@@ -1,0 +1,28 @@
+apply plugin: 'com.android.application'
+apply from: "view_opt.gradle"
+
+
+android {
+    compileSdkVersion build_versions.compile_sdk
+
+    defaultConfig {
+        applicationId "com.aliya.inflater"
+        minSdkVersion 16
+        targetSdkVersion build_versions.target_sdk
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation deps.androidx.appcompat
+    implementation deps.androidx.constraintlayout
+}

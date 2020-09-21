@@ -1,0 +1,22 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        apply from: "https://gitee.com/a_liYa/gradleconfig/raw/master/dependency/versions.gradle"
+        addAliyunRepos(repositories)
+        addRepos(repositories)
+    }
+    dependencies {
+        classpath deps.gradle_plugin
+    }
+}
+
+allprojects {
+    repositories {
+        addAliyunRepos(repositories)
+        addRepos(repositories)
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
