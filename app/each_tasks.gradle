@@ -1,0 +1,55 @@
+// 执行响应的task，会打印出响应的输入及输出问天，eg：./gradlew assembleDebug 会打印出所有任务的输入及输出文件。
+// 打印task的输入和输出
+def printTaskInputsOutputs(String taskName) {
+    def task = project.tasks.findByName(taskName)
+    if (task) {
+        task.doLast {
+            println "task :${task.name} \n{"
+            task.inputs.files.each { inputFile ->
+                println '   input file:' + inputFile.absolutePath
+            }
+            task.outputs.files.each { fileTemp ->
+                println '   output file:' + fileTemp.absolutePath
+            }
+            println "}"
+        }
+    }
+}
+
+project.afterEvaluate {
+    def tasks = ['preDebugBuild',
+                 'compileDebugAidl',
+                 'compileDebugRenderscript',
+                 'checkDebugManifest',
+                 'generateDebugBuildConfig',
+                 'prepareLintJar',
+                 'generateDebugResValues',
+                 'generateDebugResources',
+                 'mergeDebugResources',
+                 'createDebugCompatibleScreenManifests',
+                 'processDebugManifest',
+                 'splitsDiscoveryTaskDebug',
+                 'processDebugResources',
+                 'generateDebugSources',
+                 'javaPreCompileDebug',
+                 'compileDebugJavaWithJavac',
+                 'compileDebugNdk',
+                 'compileDebugSources',
+                 'mergeDebugShaders',
+                 'compileDebugShaders',
+                 'generateDebugAssets',
+                 'mergeDebugAssets',
+                 'transformClassesWithDexBuilderForDebug',
+                 'transformDexArchiveWithExternalLibsDexMergerForDebug',
+                 'transformDexArchiveWithDexMergerForDebug',
+                 'mergeDebugJniLibFolders',
+                 'transformNativeLibsWithMergeJniLibsForDebug',
+                 'processDebugJavaRes',
+                 'transformResourcesWithMergeJavaResForDebug',
+                 'validateSigningDebug',
+                 'packageDebug',
+                 'assembleDebug'
+    ]
+
+    tasks.each { name -> printTaskInputsOutputs(name) }
+}

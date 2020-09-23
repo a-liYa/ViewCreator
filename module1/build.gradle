@@ -1,17 +1,14 @@
-apply plugin: 'com.android.application'
-apply from: "view_opt.gradle"
-//apply from: "each_tasks.gradle"
-
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion build_versions.compile_sdk
 
     defaultConfig {
-        applicationId "com.aliya.inflater"
         minSdkVersion 16
         targetSdkVersion build_versions.target_sdk
         versionCode 1
         versionName "1.0"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -26,5 +23,4 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation deps.androidx.appcompat
     implementation deps.androidx.constraintlayout
-    implementation project(path: ':module1')
 }
