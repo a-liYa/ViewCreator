@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply from: "view_opt.gradle"
+apply from: "parse_layout_view.gradle"
 //apply from: "each_tasks.gradle"
 
 
@@ -27,4 +27,6 @@ dependencies {
     implementation deps.androidx.appcompat
     implementation deps.androidx.constraintlayout
     implementation project(path: ':module1')
+    implementation project(':view-creator-api')
+    annotationProcessor project(path: ':view-creator-compiler')
 }

@@ -38,6 +38,7 @@ class LayoutResourcesParseTask extends DefaultTask {
         viewNamesFile.createNewFile()
 
         viewSet.clear()
+        viewSet.addAll(ignoreViewNames)
 
         // 遍历所有输入文件夹， 拼接 /layout 子文件
         inputFiles.each { inputFile ->
@@ -49,11 +50,10 @@ class LayoutResourcesParseTask extends DefaultTask {
             // 遍历所有 inputFile/layout 里面的 layout xml 并解析
             layoutDir.listFiles().each { layoutFile ->
 
-                XmlSlurper slurper = new XmlSlurper()
-                GPathResult result = slurper.parse(layoutFile)
+                GPathResult result = new XmlSlurper().parse(layoutFile)
 
-                String viewName = result.name();
-                if (viewSet.add(viewName)) {
+                String viewName = result.name()
+                if (viewSet.add(viewName)) { // 滤重
                     viewNamesFile.append("${viewName}\n")
                 }
                 // 解析根布局下的子节点 View
@@ -64,7 +64,6 @@ class LayoutResourcesParseTask extends DefaultTask {
                 })
             }
         }
-
     }
 
     void parseViewNode(Node node) {
@@ -78,5 +77,4 @@ class LayoutResourcesParseTask extends DefaultTask {
             }
         })
     }
-
 }
