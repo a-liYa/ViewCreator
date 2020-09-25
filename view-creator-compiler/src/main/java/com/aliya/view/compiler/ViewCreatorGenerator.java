@@ -1,7 +1,5 @@
 package com.aliya.view.compiler;
 
-import com.aliya.api.ViewCreator;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -58,7 +56,7 @@ class ViewCreatorGenerator {
     private String buildClassInfo(Set<String> viewNameSet, String className) {
         StringBuilder builder = new StringBuilder();
         builder.append("// Generated code. Do not modify!\n");
-        builder.append("package ").append(ViewCreator.class.getPackage().getName()).append(";\n\n");
+        builder.append("package com.aliya.view;\n\n");
         builder.append("import android.content.Context;\n");
         builder.append("import android.util.AttributeSet;\n");
         builder.append("import android.view.*;\n");
@@ -69,7 +67,7 @@ class ViewCreatorGenerator {
 
         builder.append("public class ").append(className).append(" {\n\n");
 
-        /*--------------------------------------Method start--------------------------------------*/
+        /*---------------------Method createView(name, context, attr) start-----------------------*/
         builder.append("\tpublic View createView(String name, Context context, AttributeSet attrs) {\n");
         {   // switch 语句
             builder.append("\t\tswitch(name) {\n");
@@ -81,7 +79,7 @@ class ViewCreatorGenerator {
         }
         builder.append("\t\treturn null;\n");
         builder.append("\t}\n");
-        /*--------------------------------------Method end----------------------------------------*/
+        /*---------------------Method createView(name, context, attr) end-------------------------*/
 
         builder.append("}\n");
 
