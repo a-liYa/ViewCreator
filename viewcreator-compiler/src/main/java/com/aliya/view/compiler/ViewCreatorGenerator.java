@@ -39,7 +39,7 @@ class ViewCreatorGenerator {
 
             String classPath = javaFile.toUri().getPath();
             String buildPath = classPath.substring(0, classPath.indexOf("/generated/"));
-            Set<String> viewNameSet = readViewNameSet(buildPath + "/tmp_view_names/view_names.txt");
+            Set<String> viewNameSet = readViewNameSet(buildPath + "/tmp/mergeResourcesLayoutParse/view_names.txt");
 
             try {
                 writer = javaFile.openWriter();

@@ -28,7 +28,7 @@ class LayoutResourcesParseTask extends DefaultTask {
 
     @TaskAction
     void doTask() {
-        File distDir = new File(project.buildDir, "tmp_view_names")
+        File distDir = new File(project.buildDir, "tmp/mergeResourcesLayoutParse")
         if (!distDir.exists())
             distDir.mkdirs()
 
