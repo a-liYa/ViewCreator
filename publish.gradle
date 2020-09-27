@@ -1,0 +1,10 @@
+apply plugin: 'bintray-release'
+
+publish {
+    userOrg = "a-liya" // bintray.com 用户名
+    groupId = "com.aliya" // jcenter上的路径
+    artifactId = 'viewcreator-compiler'
+    publishVersion = version_name // 版本号
+    desc = '性能优化 - 用于改善反射创建 xml 布局内的 View，生成 new 语句'
+    website = 'https://github.com/a-liYa/ViewCreator.git'
+}

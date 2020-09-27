@@ -6,7 +6,9 @@ buildscript {
         addRepos(repositories)
     }
     dependencies {
-        classpath deps.gradle_plugin
+//        classpath deps.gradle_plugin
+        classpath deps.novoda_bintray
+        classpath 'com.android.tools.build:gradle:3.5.4'
     }
 }
 
@@ -15,6 +17,17 @@ allprojects {
         addAliyunRepos(repositories)
         addRepos(repositories)
     }
+
+    tasks.withType(Javadoc) {
+        options{
+            encoding "UTF-8"
+            charSet 'UTF-8'
+            links "http://docs.oracle.com/javase/7/docs/api"
+        }
+        options.addStringOption('tag', 'date:a:date') // 指定@date标记
+//        options.addStringOption('Xdoclint:none', '-quiet') // 避免javadoc的检查
+    }
+
 }
 
 task clean(type: Delete) {
