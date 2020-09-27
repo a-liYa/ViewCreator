@@ -1,4 +1,3 @@
-include ':view-creator-api'
 include ':view-creator-compiler'
 include ':module1'
 include ':app'

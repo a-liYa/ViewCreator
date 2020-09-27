@@ -27,6 +27,6 @@ dependencies {
     implementation deps.androidx.appcompat
     implementation deps.androidx.constraintlayout
     implementation project(path: ':module1')
-    implementation project(':view-creator-api')
+    implementation 'com.google.android.material:material:1.2.0'
     annotationProcessor project(path: ':view-creator-compiler')
 }
