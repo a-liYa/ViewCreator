@@ -1,7 +1,8 @@
 apply plugin: 'com.android.application'
-apply from: "parse_layout_view.gradle"
-//apply from: "each_tasks.gradle"
+apply from: 'parse_layout_view.gradle'
 
+// 通过自定义 creator_view_ignores 变量新增忽略 View
+//creator_view_ignores.image_view = "ImageView"
 
 android {
     compileSdkVersion build_versions.compile_sdk

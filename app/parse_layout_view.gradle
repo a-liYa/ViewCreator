@@ -1,13 +1,16 @@
 import groovy.util.slurpersupport.GPathResult
 import groovy.util.slurpersupport.Node
 
+def creator_view_ignores = [:]
+ext.creator_view_ignores = creator_view_ignores
+
 project.afterEvaluate {
     Arrays.asList("mergeDebugResources", "mergeReleaseResources").each {
-        println(it)
         def mergeResourcesTask = project.tasks.findByName(it)
         if (mergeResourcesTask != null) {
             def parseTask = project.tasks.create("$it#LayoutParseTask", LayoutResourcesParseTask.class)
             parseTask.inputFiles = mergeResourcesTask.inputs.files
+            parseTask.ignoreViewNames.addAll(creator_view_ignores.values())
             mergeResourcesTask.finalizedBy(parseTask)
         }
     }
@@ -18,12 +21,14 @@ class LayoutResourcesParseTask extends DefaultTask {
     File viewNamesFile
     FileCollection inputFiles
     HashSet<String> viewSet = new HashSet<>()
-    List<String> ignoreViewNames = Arrays.asList("include", "fragment", "merge", "view", "DateTimeView",
-            "com.google.android.material.datepicker.MaterialCalendarGridView")
+    final List<String> ignoreViewNames = new ArrayList<>();
 
     static final String LAYOUT_PATH = "layout"
 
     LayoutResourcesParseTask() {
+        ignoreViewNames.addAll(
+                Arrays.asList("include", "fragment", "merge", "view", "DateTimeView",
+                        "com.google.android.material.datepicker.MaterialCalendarGridView"))
     }
 
     @TaskAction
