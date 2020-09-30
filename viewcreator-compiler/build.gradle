@@ -1,8 +1,8 @@
 apply plugin: 'java-library'
 
 ext {
-    version_code = 001
-    version_name = '0.0.1'
+    version_code = 002
+    version_name = '0.0.2'
 }
 
 dependencies {
