@@ -5,6 +5,20 @@ def creator_view_ignores = [:]
 ext.creator_view_ignores = creator_view_ignores
 
 project.afterEvaluate {
+
+    // 修改 implementation 为 api
+//    project.configurations.each { config ->
+//        if (config.name == "implementation") {
+//            // 找到 implementation dependency，添加 api dependency，删除原来的 implementation dependency
+//            def iterator = config.dependencies.iterator()
+//            while (iterator.hasNext()) {
+//                def next = iterator.next()
+//                project.dependencies.add("api", next)
+//                iterator.remove()
+//            }
+//        }
+//    }
+
     Arrays.asList("mergeDebugResources", "mergeReleaseResources").each {
         def mergeResourcesTask = project.tasks.findByName(it)
         if (mergeResourcesTask != null) {
