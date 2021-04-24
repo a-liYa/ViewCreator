@@ -8,6 +8,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewStub;
 
 import com.aliya.view.ViewCreatorImpl;
 
@@ -94,6 +95,12 @@ public class AppViewCreator {
             }
             sTotalTime += (System.nanoTime() - startNs);
             Log.e("TAG", String.format(msg_format, ++sCreateCount, sTotalTime / 1000000));
+
+            if (view instanceof ViewStub) {
+                // 保持一致，参考：LayoutInflater#createView(String, String, AttributeSet)
+                LayoutInflater inflater = LayoutInflater.from(context);
+                ((ViewStub) view).setLayoutInflater(inflater.cloneInContext((context)));
+            }
             return view;
         }
     }
