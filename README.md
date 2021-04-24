@@ -2,17 +2,6 @@
 
 Android 布局加载性能优化 - 反射改成new
 
-```
-android-28
-HashMap<String, Constructor<?>> sConstructorMap = new HashMap<>()
-
-LayoutInflater#sConstructorMap;
-GenericInflater#sConstructorMap;
-ReflectionInflater#sConstructorMap;
-
-androidx
-androidx.appcompat.app.AppCompatViewInflater#sConstructorMap;
-```
 
 #### 原理
 
