@@ -1,4 +1,3 @@
 include ':viewcreator-compiler'
 include ':module1'
 include ':app'
-rootProject.name = "InflaterView"

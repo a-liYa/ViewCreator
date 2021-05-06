@@ -69,20 +69,14 @@ class LayoutResourcesParseTask extends DefaultTask {
 
             // 遍历所有 inputFile/layout 里面的 layout xml 并解析
             layoutDir.listFiles().each { layoutFile ->
-
-                if (!layoutFile.name.startsWith(".")) { // 过滤隐藏文件
+                if (layoutFile.name.endsWith(".xml")) {
                     GPathResult result = new XmlSlurper().parse(layoutFile)
-
-                    String viewName = result.name()
-                    if (viewSet.add(viewName)) { // 滤重
-                        viewNamesFile.append("${viewName}\n")
-                    }
-                    // 解析根布局下的子节点 View
-                    result.childNodes().forEachRemaining({ o ->
-                        if (o instanceof Node) {
-                            parseViewNode(o)
+                    // 解析布局的 View 节点
+                    result.nodeIterator().forEachRemaining() { node ->
+                        if (node instanceof Node) {
+                            parseViewNode(node)
                         }
-                    })
+                    }
                 }
             }
         }
